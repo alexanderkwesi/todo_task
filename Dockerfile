@@ -22,7 +22,7 @@ WORKDIR /app
 COPY . /app
 
 # Install the application dependencies
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt, npm install
 
 # Define the entry point for the container
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0"],["npm", "start"]
