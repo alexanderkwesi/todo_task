@@ -343,7 +343,7 @@ $(document).ready(function() {
         header.style.display = "block";
 
         // Open a new window
-        window.open("http://127.0.0.1:8100/show_task_history", "parent");
+        window.open("https://www.todotasklist.com/show_task_history", "parent");
 
         // Create message
         message.style.fontWeight = "bolder";
@@ -354,7 +354,7 @@ $(document).ready(function() {
 
         // AJAX call
         $.ajax({
-            url: "http://127.0.0.1:8100/show_task_history",
+            url: "https://www.todotasklist.com/show_task_history",
             type: "GET",
             dataType: "text", // Corrected
             success: function(data) {
