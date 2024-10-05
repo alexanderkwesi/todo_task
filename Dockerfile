@@ -16,8 +16,6 @@ COPY . .
 # Expose the port that the app will run on
 EXPOSE 8080
 
-ENV FLASK_APP=apps.py
-
 # Command to run the app with Gunicorn
 # Gunicorn is set to listen on 0.0.0.0:8000 with 4 worker processes
 CMD ["gunicorn", "--workers", "7", "--bind", "0.0.0.0:8080", "apps:apps"]
