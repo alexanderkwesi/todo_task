@@ -201,7 +201,7 @@ def Todo():
     files = read_file()
     print(files)
     if not files.keys :
-        return render_template('new_todo_page.html', task='warning', message='No file Contents returned')
+        return render_template('index.html', task='warning', message='No file Contents returned')
     elif files.keys:
         for file_ in files:
             files_ = files[file_]
@@ -215,7 +215,7 @@ def Todo():
                 ##used_dict[key] = files_[i]
                 ##print(used_dict)
             ##continue
-            return render_template('new_todo_page.html', used_dict=files_, task="success", message="File Contents returned successfully")
+            return render_template('index.html', used_dict=files_, task="success", message="File Contents returned successfully")
 
 
 
@@ -252,12 +252,12 @@ async def add_task():
                 used_file = await add_task_to_file(task)
                 print(used_file)
                 if used_file != "Task already exist":
-                    return render_template('new_todo_page.html', used_dict=files, task="success", message='Task successfully created')
+                    return render_template('index.html', used_dict=files, task="success", message='Task successfully created')
                 else:
-                    return render_template('new_todo_page.html', used_dict=files, task='warning', message='Enter a new task, task already exist')
+                    return render_template('index.html', used_dict=files, task='warning', message='Enter a new task, task already exist')
         else:
             if task == '':
-                return render_template('new_todo_page.html', used_dict=used_dict, task='warning', message='Empty Task Can not be Entered')
+                return render_template('index.html', used_dict=used_dict, task='warning', message='Empty Task Can not be Entered')
         
         
 @apps.route('/complete_task', methods=['POST', 'GET'])
@@ -300,7 +300,7 @@ def complete_task():
             db_query = session.execute(stmt)
             data_stmt = db_query.fetchall()
             print(data_stmt)
-            return render_template('new_todo_page.html', task='Success', info='Task History Retrieved Successfully', data_stmt=data_stmt, used_dict=files)    
+            return render_template('index.html', task='Success', info='Task History Retrieved Successfully', data_stmt=data_stmt, used_dict=files)    
         elif not check_state == 'on' and task_todo not in data_:
             max_id = session.scalars(select(func.max(Todos.task_id)).where(Todos.task_id > 0)).one()
             print(max_id)
@@ -318,15 +318,15 @@ def complete_task():
             db_query = session.execute(stmt).fetchall()
             data_stmt = db_query
             print(data_stmt)
-            return render_template('new_todo_page.html', task='Success', info='Task History Retrieved Successfully', data_stmt=data_stmt, used_dict=files)
+            return render_template('index.html', task='Success', info='Task History Retrieved Successfully', data_stmt=data_stmt, used_dict=files)
         else:
-            return render_template('new_todo_page.html', task='warning', info='Task already exists enter a different task or clear task history', used_dict=files)    
+            return render_template('index.html', task='warning', info='Task already exists enter a different task or clear task history', used_dict=files)    
     elif request.method == 'GET':
         stmt = Text('SELECT task_id, todo_task, check_state, check_status, check_date FROM todo')    
         db_query = session.execute(stmt)
         data_stmt = db_query.all()
         print(data_stmt)
-        return render_template('new_todo_page.html', task='Success', info='Task History Retrieved Successfully', data_stmt=data_stmt, used_dict=files)
+        return render_template('index.html', task='Success', info='Task History Retrieved Successfully', data_stmt=data_stmt, used_dict=files)
 
 @apps.route('/show_task_history', methods=['GET'])
 def show_task_history():
@@ -338,12 +338,12 @@ def show_task_history():
         db_query = session.execute(stmt)
         data_stmt = db_query.all()
         print(data_stmt)
-    return render_template('new_todo_page.html', task='Success', info='Task History Listed Successfully Below', data_stmt=data_stmt, used_dict=files_)
+    return render_template('index.html', task='Success', info='Task History Listed Successfully Below', data_stmt=data_stmt, used_dict=files_)
 
 
 @apps.route('/inventory')
 def inventory_page():
-    return render_template('inventory_page.html')
+    return render_template('index2.html')
 
 if __name__ == '__main__':
     apps.run(debug=True)
