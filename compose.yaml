@@ -45,5 +45,5 @@ services:
 #   db-data:
 # secret:
 #   db-password:
-      file: db-password
+#     file: db-password
 
