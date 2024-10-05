@@ -12,10 +12,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 80 available to the world outside this container
-EXPOSE 80
+EXPOSE 8080
 
 # Define environment variable
 ENV FLASK_APP=apps.py
 
 # Run the application
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:80", "apps:apps"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "apps:apps"]
