@@ -18,4 +18,4 @@ EXPOSE 8080
 ENV FLASK_APP=apps.py
 
 # Run the application
-CMD ["gunicorn", "-workers", "7", "-bind", "0.0.0.0:8080", "apps:apps"]
+CMD ["gunicorn", "--workers", "7", "--bind", "0.0.0.0:8080", "apps:apps"]
