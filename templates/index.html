@@ -374,3 +374,29 @@ $(document).ready(function() {
         });
     });
 </script>
+<script type="text/javascript">
+  function refresh() {
+
+
+
+    // Get the current URL of the page
+  var uro = window.location.href;
+
+    // Get the position of the last '/' in the URL
+    var uiro = uro.indexOf('h');
+    var uiroo = uro.indexOf('a') - 1;
+
+    // If the URL contains '/add_task'  
+    const uri = urio.substr(uiro, uiroo);
+   
+    window.open(uri);
+    
+    alert(uri);
+
+
+  }
+  if (window.location.href.includes('/add_task'))
+  {
+    setInterval(refresh, 300);
+  }
+ </script>
