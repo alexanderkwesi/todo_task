@@ -4,14 +4,14 @@ FROM python:3.12
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements.txt file to the container
-COPY requirements.txt .
+# Step 4: Install dependencies (First copy only requirements.txt to leverage Docker caching)
+COPY requirements.txt /app/
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies (this layer will only re-run if requirements.txt changes)
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy the current directory contents into the container at /app
-COPY . .
+# Step 5: Copy the application code (Any code changes will trigger a rebuild)
+COPY . /app/
 
 # Expose the port that the app will run on
 EXPOSE 8080
