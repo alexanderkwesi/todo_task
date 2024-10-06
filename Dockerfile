@@ -18,4 +18,4 @@ EXPOSE 8080
 
 # Command to run the app with Gunicorn
 # Gunicorn is set to listen on 0.0.0.0:8000 with 4 worker processes
-CMD ["gunicorn", "--workers", "7", "--bind", "0.0.0.0:8080", "apps:apps"]
+CMD ["gunicorn", "--workers", "12", "--bind", "0.0.0.0:8080", "apps:apps"]
